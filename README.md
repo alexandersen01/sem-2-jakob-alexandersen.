@@ -1,3 +1,5 @@
-# Mitt program
+# SUDOKU!
 
-Se [oppgaveteksten](./OPPGAVETEKST.md) til semesteroppgave 2. Denne README -filen kan du endre som en del av dokumentasjonen til programmet, hvor du beskriver for en bruker hvordan programmet skal benyttes.
+Vi holder alle spillet [Sudoku](https://en.wikipedia.org/wiki/Sudoku) nært og kjært. 
+I dag vil du få prøve deg på det! Spillet har tre ulike vanskelighetsgrader,
+så velg med **omhu**!

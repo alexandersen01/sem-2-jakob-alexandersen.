@@ -1,18 +1,32 @@
 package no.uib.inf101.sem2;
 
-import no.uib.inf101.sem2.view.SampleView;
+import java.awt.BorderLayout;
+import java.awt.Container;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class Main {
-  public static void main(String[] args) {
-    SampleView view = new SampleView();
+public class Main extends JFrame{
 
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setTitle("INF101");
-    frame.setContentPane(view);
-    frame.pack();
-    frame.setVisible(true);
+  GameBoard board = new GameBoard();
+  JButton NGbutton = new JButton("New Game");
+  JButton RButton = new JButton("Restart");
+
+  public Main(){
+    Container c = getContentPane();
+    c.add(board, BorderLayout.CENTER);
+    board.newGame();
+    pack();
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setVisible(true);
+    setTitle("SUDOKU!");
+
   }
+
+  public static void main(String[] args) {
+    new Main();
+  }
+
 }
+
+//TODO: Add a new game button
