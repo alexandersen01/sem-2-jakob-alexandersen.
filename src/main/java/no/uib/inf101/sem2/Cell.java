@@ -1,6 +1,9 @@
 package no.uib.inf101.sem2;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JTextField;
 
 /**
@@ -12,13 +15,13 @@ import javax.swing.JTextField;
 public class Cell extends JTextField{
     
     public static Color BackgroundColor = Color.WHITE;
-    public static Color ForegroundColor = Color.BLACK;
-    public static Color WrongGuessColor = new Color(199, 0, 17);
-    public static Color CorrectGuessColor = new Color(0, 123, 255);
-    public static Color GivenColor = new Color(0, 0, 0);
-    public static Color ToGuessColor = new Color(0, 0, 0);
-    public static Font NUMBER_FONT = new Font("Avenir", Font.PLAIN, 20);
-    //TODO: check colors hehe
+    public static Color ForegroundColor = Color.WHITE;
+    public static Color WrongGuessColor = Color.GRAY;
+    public static Color CorrectGuessColor = Color.GREEN;
+    public static Color GivenColor = Color.BLUE;
+    public static Color ToGuessColor = Color.RED;
+    public static Font NUMBER_FONT = new Font("Avenir", Font.PLAIN, 40);
+
 
     // Row and column of the cell
     int row;
@@ -56,10 +59,11 @@ public class Cell extends JTextField{
         paint();
     }
 
+
     public void paint(){
         switch (status) {
             case GIVEN:
-                super.setBackground(GivenColor);
+                super.setBackground(BackgroundColor);
                 super.setForeground(GivenColor);
                 super.setText(value + "");
                 super.setEditable(false);
@@ -67,7 +71,7 @@ public class Cell extends JTextField{
 
             case TO_GUESS:
                 super.setBackground(BackgroundColor);
-                super.setForeground(ForegroundColor);
+                super.setForeground(ToGuessColor);
                 super.setText("");
                 super.setEditable(true);
                 break;
@@ -79,6 +83,28 @@ public class Cell extends JTextField{
             case CORRECT_GUESS:
                 super.setBackground(CorrectGuessColor);
                 break;
+        }
+
+
+        //paint lines in a 3x3 grid
+        if (row % 3 == 0 && col % 3 == 0) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 1, 1, 1, Color.BLACK));
+        } else if (row % 3 == 0 && col % 3 == 1) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 1, 1, 1, Color.BLACK));
+        } else if (row % 3 == 0 && col % 3 == 2) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 1, 1, 3, Color.BLACK));
+        } else if (row % 3 == 1 && col % 3 == 0) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+        } else if (row % 3 == 1 && col % 3 == 1) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+        } else if (row % 3 == 1 && col % 3 == 2) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 3, Color.BLACK));
+        } else if (row % 3 == 2 && col % 3 == 0) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 3, 1, Color.BLACK));
+        } else if (row % 3 == 2 && col % 3 == 1) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 3, 1, Color.BLACK));
+        } else if (row % 3 == 2 && col % 3 == 2) {
+            super.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 3, 3, Color.BLACK));
         }
     }
 }

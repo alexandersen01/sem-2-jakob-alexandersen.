@@ -38,7 +38,12 @@ public class GameBoard extends JPanel{
             }
         }
 
-        super.setPreferredSize(new Dimension(BoardWidth, BoardHeight));
+        //window size constants
+        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        int dims = ((int) screenSize.getWidth()) / 3;
+
+
+        super.setPreferredSize(new Dimension(dims, dims));
         
 
     }
@@ -51,11 +56,22 @@ public class GameBoard extends JPanel{
 
             // Get the value of the cell
             int cellValue = Integer.parseInt(cell.getText());
+
+            // Check if the value is correct
+            if(cellValue == game.nums[cell.row][cell.col]){
+                cell.status = CellStatus.CORRECT_GUESS;
+            } else {
+                cell.status = CellStatus.WRONG_GUESS;
+            }
+            //repaint the cell
+            cell.paint();
         }
     }
 
     public void newGame(){
-        game.newGame(2);
+        game.newGame(3);
+
+        // Set the values of the cells
         for(int row = 0; row < GridSize; row++){
             for(int col = 0; col < GridSize; col++){
                 box[row][col].newGame(game.nums[row][col], game.isGiven[row][col]);
