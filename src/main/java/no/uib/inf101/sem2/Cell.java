@@ -18,8 +18,8 @@ public class Cell extends JTextField{
     public static Color ForegroundColor = Color.WHITE;
     public static Color WrongGuessColor = Color.GRAY;
     public static Color CorrectGuessColor = Color.GREEN;
-    public static Color GivenColor = Color.BLUE;
-    public static Color ToGuessColor = Color.RED;
+    public static Color GivenColor = Color.BLACK;
+    public static Color ToGuessColor = Color.BLUE;
     public static Font NUMBER_FONT = new Font("Avenir", Font.PLAIN, 40);
 
 
@@ -83,7 +83,10 @@ public class Cell extends JTextField{
             case CORRECT_GUESS:
                 super.setBackground(CorrectGuessColor);
                 break;
+
         }
+
+
 
 
         //paint lines in a 3x3 grid

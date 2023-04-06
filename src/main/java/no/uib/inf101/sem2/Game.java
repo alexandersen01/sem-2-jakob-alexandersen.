@@ -24,12 +24,12 @@ public class Game {
         return lines.get(randomIndex);
     }
 
-    public void newGame(int difficulty){
+    public void newGame(){
 
         //find random line from dataset.txt
         String line = "";
         try {
-            line = getRandomLine("src/Dataset.txt");
+            line = getRandomLine("src/Hard.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }

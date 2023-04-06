@@ -5,7 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GameBoard extends JPanel{
-    
+
+
     // define size of grid, subgrid and cell
     public static final int GridSize = 9;
     public static final int CellSize = 3;
@@ -19,6 +20,7 @@ public class GameBoard extends JPanel{
     private Game game = new Game();
 
     public GameBoard(){
+        
         super.setLayout(new GridLayout(GridSize, GridSize));
 
         // Create the cells
@@ -69,7 +71,7 @@ public class GameBoard extends JPanel{
     }
 
     public void newGame(){
-        game.newGame(3);
+        game.newGame();
 
         // Set the values of the cells
         for(int row = 0; row < GridSize; row++){
