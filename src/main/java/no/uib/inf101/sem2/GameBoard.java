@@ -15,7 +15,7 @@ public class GameBoard extends JPanel {
     public static final int BoardWidth = CellPixels * GridSize;
     public static final int BoardHeight = CellPixels * CellSize;
 
-    private Cell[][] box = new Cell[GridSize][GridSize];
+    public static Cell[][] box = new Cell[GridSize][GridSize];
     private Game game = new Game();
 
     public GameBoard() {
@@ -29,6 +29,8 @@ public class GameBoard extends JPanel {
                 super.add(box[row][col]);
             }
         }
+
+        
 
         // Create the listener and incorporate it into the cells
         InputListener listener = new InputListener();

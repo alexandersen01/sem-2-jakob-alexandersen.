@@ -10,10 +10,11 @@ import javax.swing.JFrame;
 
 public class Main extends JFrame{
 
-  // TitleScreen title = new TitleScreen();
+  Ouch ouch = new Ouch();
   Game game = new Game();
   GameBoard board = new GameBoard();
   JButton NGbutton = new JButton("Check solution");
+  Congratulations congrats = new Congratulations();
 
 
   public Main(){
@@ -21,23 +22,31 @@ public class Main extends JFrame{
     
     Container c = getContentPane();
     c.add(board, BorderLayout.CENTER);
-    //add button to restart game via board.newGame()
 
     c.add(NGbutton, BorderLayout.SOUTH);
     NGbutton.addActionListener(new ActionListener(){
         @Override
         public void actionPerformed(ActionEvent e){
             game.isSolved();
-
-
+            if(game.isSolved()){
+                c.removeAll();
+                c.add(congrats, BorderLayout.CENTER);
+                pack();
+            }
+            else{
+                c.removeAll();
+                c.add(ouch, BorderLayout.CENTER);
+                pack();
+            }
         }
     });
-
     board.newGame();
     pack();
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     setTitle("SUDOKU!");
+
+
 
   }
 

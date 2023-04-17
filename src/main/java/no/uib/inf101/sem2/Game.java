@@ -8,7 +8,8 @@ import java.util.Random;
 
 public class Game {
     public GameStatus state = GameStatus.ACTIVE;
-    public String solution = "";
+    public static String solution = "";
+
 
     // all the numbers in the game
     // add solved boards to txt files
@@ -81,9 +82,9 @@ public class Game {
         }
     }
 
-    public String getSolution() {
-        return solution;
-    }
+    // public String getSolution() {
+    //     return solution;
+    // }
 
 
     public static boolean validNumber(int[][] input, int row, int col, int num) {
@@ -139,20 +140,28 @@ public class Game {
 
     public boolean isSolved() {
 
-        //convert nums[][] to string
-        String board = "";
+
+        String board = "";        
+        //get all the numbers on from gameboard.box
         for (int i = 0; i < GameBoard.GridSize; i++) {
             for (int j = 0; j < GameBoard.GridSize; j++) {
-                board += nums[i][j];
+                board += GameBoard.box[i][j].getText();
             }
         }
+        System.out.println(board);
+
+        System.out.println(solution);
+
+
 
         //check if board is equal to solution
         if (board.equals(solution)) {
             state = GameStatus.WON;
+            System.out.println("You won!");
             return true;
         } else {
             state = GameStatus.LOST;
+            System.out.println("You lost!");
             return false;
         }
     }
