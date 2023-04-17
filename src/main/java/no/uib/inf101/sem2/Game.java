@@ -1,6 +1,5 @@
 package no.uib.inf101.sem2;
 
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,12 +7,34 @@ import java.util.List;
 import java.util.Random;
 
 public class Game {
-    
-    //all the numbers in the game
+    public GameStatus state = GameStatus.ACTIVE;
+    public String solution = "";
+
+    // all the numbers in the game
+    // add solved boards to txt files
+    // enum field
+    // tallet, statusen til tallet, om tallet er gitt eller ikke
+    // når tegner, tegner bare en rute -> jpanel (bare tilgang til det tallet
+    // lager en klasse (sudokucell) field num, status
+    // soduku cellview som tegner den ene ruten
+    // den håndterer statusen til tallet
+
+    // FUNKSJONALITET
+    // ønsker en splash screen
+    // ønsker en GAMEOVER -> om du har tapt eller vunnet
+
+    // MODULARITET
+    // Innenfor minimum
+    // lage en ny klasse som representerer en celle og en som tegner en celle
+
+    // KODESTIL
+    // dokumentasjon og testing må skrives på alt som er public
+    // kjør format på alle filene 
+
     int nums[][] = new int[GameBoard.GridSize][GameBoard.GridSize];
     boolean isGiven[][] = new boolean[GameBoard.GridSize][GameBoard.GridSize];
 
-    public Game(){
+    public Game() {
         super();
     }
 
@@ -24,52 +45,46 @@ public class Game {
         return lines.get(randomIndex);
     }
 
-    public void newGame(){
+    public void newGame() {
 
-        //find random line from dataset.txt
+        // find random line from dataset.txt
         String line = "";
         try {
-            line = getRandomLine("src/Hard.txt");
+            line = getRandomLine("src/Easy.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //split random line in strings with length 9 and add to nums[][]
-        String[] split = line.split("(?<=\\G.{9})");
-        for(int i = 0; i < split.length; i++){
-            for(int j = 0; j < split[i].length(); j++){
-                nums[i][j] = Integer.parseInt(split[i].substring(j, j+1));
+        //get first 81 chars from line and add to nums[][]
+        for (int i = 0; i < GameBoard.GridSize; i++) {
+            for (int j = 0; j < GameBoard.GridSize; j++) {
+                nums[i][j] = Integer.parseInt(line.substring(i * GameBoard.GridSize + j, i * GameBoard.GridSize + j + 1));
             }
         }
 
-        //print line to console
+        
+        // get the chars from the right of the comma in line and add to solution
+        solution += line.substring(82);
+        System.out.println(solution);
+
+
+        // print line to console
         System.out.println(line);
 
-        //set isGiven[][] to true for all nums[][] that are not 0
-        for(int i = 0; i < GameBoard.GridSize; i++){
-            for(int j = 0; j < GameBoard.GridSize; j++){
-                if(nums[i][j] != 0){
+        // set isGiven[][] to true for all nums[][] that are not 0
+        for (int i = 0; i < GameBoard.GridSize; i++) {
+            for (int j = 0; j < GameBoard.GridSize; j++) {
+                if (nums[i][j] != 0) {
                     isGiven[i][j] = true;
                 }
             }
         }
     }
 
-
-    public static int[][] solve(int[][] input) {
-        for (int i = 0; i < 9 * 9; i++) {
-            if (input[i / 9][i % 9] != 0) {
-                continue;
-            }
-            for (int j = 1; j <= 9; j++) {
-                if (validNumber(input, i / 9, i % 9, j)) {
-                    input[i / 9][i % 9] = j;
-                    solve(input);
-                }
-            }
-        }
-        return input;
+    public String getSolution() {
+        return solution;
     }
+
 
     public static boolean validNumber(int[][] input, int row, int col, int num) {
         for (int i = 0; i < 9; i++) {
@@ -92,6 +107,54 @@ public class Game {
             }
         }
         return true;
+    }
+
+    //create eventlistener to check if all the numbers are filled in
+    //if they are, call isSolved()
+    public void checkIfSolved() {
+        boolean solved = true;
+        for (int i = 0; i < GameBoard.GridSize; i++) {
+            for (int j = 0; j < GameBoard.GridSize; j++) {
+                if (nums[i][j] == 0) {
+                    solved = false;
+                }
+            }
+        }
+        if (solved) {
+            isSolved();
+        }
+    }
+
+    public boolean isFilled() {
+        for (int i = 0; i < GameBoard.GridSize; i++) {
+            for (int j = 0; j < GameBoard.GridSize; j++) {
+                if (nums[i][j] == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+    public boolean isSolved() {
+
+        //convert nums[][] to string
+        String board = "";
+        for (int i = 0; i < GameBoard.GridSize; i++) {
+            for (int j = 0; j < GameBoard.GridSize; j++) {
+                board += nums[i][j];
+            }
+        }
+
+        //check if board is equal to solution
+        if (board.equals(solution)) {
+            state = GameStatus.WON;
+            return true;
+        } else {
+            state = GameStatus.LOST;
+            return false;
+        }
     }
 
 }

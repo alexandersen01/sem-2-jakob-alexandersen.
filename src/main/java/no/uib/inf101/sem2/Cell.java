@@ -1,8 +1,6 @@
 package no.uib.inf101.sem2;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
 
@@ -15,7 +13,7 @@ import javax.swing.JTextField;
 public class Cell extends JTextField{
     
     public static Color BackgroundColor = Color.WHITE;
-    public static Color ForegroundColor = Color.WHITE;
+    public static Color EmptyColor = Color.YELLOW;
     public static Color WrongGuessColor = Color.GRAY;
     public static Color CorrectGuessColor = Color.GREEN;
     public static Color GivenColor = Color.BLACK;
@@ -70,7 +68,7 @@ public class Cell extends JTextField{
                 break;
 
             case TO_GUESS:
-                super.setBackground(BackgroundColor);
+                super.setBackground(EmptyColor);
                 super.setForeground(ToGuessColor);
                 super.setText("");
                 super.setEditable(true);
