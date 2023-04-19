@@ -1,7 +1,7 @@
 package no.uib.inf101.sem2;
 
 /**
- * The status of a cell in the game. 
+ * The status of a cell in the game.
  * <p>
  * The statuses are:
  * <ul>

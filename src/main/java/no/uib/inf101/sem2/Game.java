@@ -6,10 +6,13 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The game class. This class contains the game logic.
+ */
+
 public class Game {
     public GameStatus state = GameStatus.ACTIVE;
     public static String solution = "";
-
 
     // all the numbers in the game
     // add solved boards to txt files
@@ -30,15 +33,23 @@ public class Game {
 
     // KODESTIL
     // dokumentasjon og testing må skrives på alt som er public
-    // kjør format på alle filene 
+    // kjør format på alle filene
 
     int nums[][] = new int[GameBoard.GridSize][GameBoard.GridSize];
     boolean isGiven[][] = new boolean[GameBoard.GridSize][GameBoard.GridSize];
 
+    // constructor
     public Game() {
         super();
     }
 
+    /**
+     * Gets a random line from a file
+     * 
+     * @param filePath
+     * @return String
+     * @throws IOException
+     */
     public String getRandomLine(String filePath) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(filePath));
         Random rand = new Random();
@@ -46,31 +57,29 @@ public class Game {
         return lines.get(randomIndex);
     }
 
+    /**
+     * Starts a new game
+     */
     public void newGame() {
 
         // find random line from dataset.txt
         String line = "";
         try {
-            line = getRandomLine("src/Easy.txt");
+            line = getRandomLine("src/Test.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //get first 81 chars from line and add to nums[][]
+        // get first 81 chars from line and add to nums[][]
         for (int i = 0; i < GameBoard.GridSize; i++) {
             for (int j = 0; j < GameBoard.GridSize; j++) {
-                nums[i][j] = Integer.parseInt(line.substring(i * GameBoard.GridSize + j, i * GameBoard.GridSize + j + 1));
+                nums[i][j] = Integer
+                        .parseInt(line.substring(i * GameBoard.GridSize + j, i * GameBoard.GridSize + j + 1));
             }
         }
 
-        
         // get the chars from the right of the comma in line and add to solution
         solution += line.substring(82);
-        System.out.println(solution);
-
-
-        // print line to console
-        System.out.println(line);
 
         // set isGiven[][] to true for all nums[][] that are not 0
         for (int i = 0; i < GameBoard.GridSize; i++) {
@@ -82,86 +91,27 @@ public class Game {
         }
     }
 
-    // public String getSolution() {
-    //     return solution;
-    // }
-
-
-    public static boolean validNumber(int[][] input, int row, int col, int num) {
-        for (int i = 0; i < 9; i++) {
-            if (input[row][i] == num) {
-                return false;
-            }
-        }
-        for (int i = 0; i < 9; i++) {
-            if (input[i][col] == num) {
-                return false;
-            }
-        }
-        int rowStart = (row / 3) * 3;
-        int colStart = (col / 3) * 3;
-        for (int i = rowStart; i < rowStart + 3; i++) {
-            for (int j = colStart; j < colStart + 3; j++) {
-                if (input[i][j] == num) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    //create eventlistener to check if all the numbers are filled in
-    //if they are, call isSolved()
-    public void checkIfSolved() {
-        boolean solved = true;
-        for (int i = 0; i < GameBoard.GridSize; i++) {
-            for (int j = 0; j < GameBoard.GridSize; j++) {
-                if (nums[i][j] == 0) {
-                    solved = false;
-                }
-            }
-        }
-        if (solved) {
-            isSolved();
-        }
-    }
-
-    public boolean isFilled() {
-        for (int i = 0; i < GameBoard.GridSize; i++) {
-            for (int j = 0; j < GameBoard.GridSize; j++) {
-                if (nums[i][j] == 0) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-
+    /**
+     * Checks if the game is solved
+     * 
+     * @return Boolean (true, hopefully)
+     */
     public boolean isSolved() {
 
-
-        String board = "";        
-        //get all the numbers on from gameboard.box
+        String board = "";
+        // get all the numbers on from gameboard.box
         for (int i = 0; i < GameBoard.GridSize; i++) {
             for (int j = 0; j < GameBoard.GridSize; j++) {
                 board += GameBoard.box[i][j].getText();
             }
         }
-        System.out.println(board);
 
-        System.out.println(solution);
-
-
-
-        //check if board is equal to solution
+        // check if board is equal to solution
         if (board.equals(solution)) {
             state = GameStatus.WON;
-            System.out.println("You won!");
             return true;
         } else {
             state = GameStatus.LOST;
-            System.out.println("You lost!");
             return false;
         }
     }

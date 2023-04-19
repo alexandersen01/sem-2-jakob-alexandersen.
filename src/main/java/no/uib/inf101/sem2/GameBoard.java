@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * Draws the game board and handles the input
+ */
 public class GameBoard extends JPanel {
 
     // define size of grid, subgrid and cell
@@ -18,6 +21,7 @@ public class GameBoard extends JPanel {
     public static Cell[][] box = new Cell[GridSize][GridSize];
     private Game game = new Game();
 
+    // constructor
     public GameBoard() {
 
         super.setLayout(new GridLayout(GridSize, GridSize));
@@ -29,8 +33,6 @@ public class GameBoard extends JPanel {
                 super.add(box[row][col]);
             }
         }
-
-        
 
         // Create the listener and incorporate it into the cells
         InputListener listener = new InputListener();
@@ -56,22 +58,15 @@ public class GameBoard extends JPanel {
         public void actionPerformed(ActionEvent e) {
             Cell cell = (Cell) e.getSource();
 
-            // Get the value of the cell
-            int cellValue = Integer.parseInt(cell.getText());
-
-            // Check if the value is correct
-            if (cellValue == game.nums[cell.row][cell.col]) {
-                cell.status = CellStatus.CORRECT_GUESS;
-            } else {
-                cell.status = CellStatus.WRONG_GUESS;
-            }
-
             // repaint the cell
             cell.paint();
 
         }
     }
 
+    /**
+     * Starts a new game
+     */
     public void newGame() {
         game.newGame();
 

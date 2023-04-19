@@ -1,4 +1,5 @@
 package no.uib.inf101.sem2;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -10,8 +11,8 @@ import javax.swing.JTextField;
  * There's about 81 cells in one board
  */
 
-public class Cell extends JTextField{
-    
+public class Cell extends JTextField {
+
     public static Color BackgroundColor = Color.WHITE;
     public static Color EmptyColor = Color.YELLOW;
     public static Color WrongGuessColor = Color.GRAY;
@@ -19,7 +20,6 @@ public class Cell extends JTextField{
     public static Color GivenColor = Color.BLACK;
     public static Color ToGuessColor = Color.BLUE;
     public static Font NUMBER_FONT = new Font("Avenir", Font.PLAIN, 40);
-
 
     // Row and column of the cell
     int row;
@@ -32,7 +32,7 @@ public class Cell extends JTextField{
     CellStatus status;
 
     // Cell constructor
-    public Cell(int row, int col){
+    public Cell(int row, int col) {
         // Jtextfield for the cell
         super();
         this.row = row;
@@ -47,7 +47,7 @@ public class Cell extends JTextField{
      * Method for a new game, resets the cell
      */
 
-    public void newGame(int value, boolean given){
+    public void newGame(int value, boolean given) {
         this.value = value;
         if (given) {
             status = CellStatus.GIVEN;
@@ -57,8 +57,7 @@ public class Cell extends JTextField{
         paint();
     }
 
-
-    public void paint(){
+    public void paint() {
         switch (status) {
             case GIVEN:
                 super.setBackground(BackgroundColor);
@@ -84,10 +83,7 @@ public class Cell extends JTextField{
 
         }
 
-
-
-
-        //paint lines in a 3x3 grid
+        // paint lines in a 3x3 grid
         if (row % 3 == 0 && col % 3 == 0) {
             super.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 1, 1, 1, Color.BLACK));
         } else if (row % 3 == 0 && col % 3 == 1) {
