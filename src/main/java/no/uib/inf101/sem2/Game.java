@@ -65,7 +65,7 @@ public class Game {
         // find random line from dataset.txt
         String line = "";
         try {
-            line = getRandomLine("src/Test.txt");
+            line = getRandomLine("src/Easy.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
