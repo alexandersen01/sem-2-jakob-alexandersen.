@@ -14,3 +14,5 @@ Derfor har jeg laget 3000 brett med varierende vanskelighetsgrader.
 Jeg tok utgangspunkt i datasettet fra Gordon Royle, og brukte py-sydoku for å løse alle disse brettene.
 Videre gjorde jeg disse løste brettene om til strings, og erstattet tilfeldige tall med '0'. Antall nuller baseres på vanskelighetsgraden.
 [Driverkoden til sudoku-generatoren finner du på min private github](https://github.com/alexandersen01/man-2).
+
+Til slutt så finnes det [En link her til den som måtte prøve seg👻](https://youtu.be/2LXjAXzpSxk)

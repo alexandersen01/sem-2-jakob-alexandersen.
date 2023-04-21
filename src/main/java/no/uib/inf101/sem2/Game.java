@@ -97,15 +97,23 @@ public class Game {
      * @return Boolean (true, hopefully)
      */
     public boolean isSolved() {
-
+        // Check that GameBoard.box is not null
+        if (GameBoard.box == null) {
+            return false;
+        }
+    
         String board = "";
         // get all the numbers on from gameboard.box
         for (int i = 0; i < GameBoard.GridSize; i++) {
             for (int j = 0; j < GameBoard.GridSize; j++) {
+                // Check that GameBoard.box[i][j] is not null
+                if (GameBoard.box[i][j] == null) {
+                    return false;
+                }
                 board += GameBoard.box[i][j].getText();
             }
         }
-
+    
         // check if board is equal to solution
         if (board.equals(solution)) {
             state = GameStatus.WON;
@@ -115,5 +123,6 @@ public class Game {
             return false;
         }
     }
+    
 
 }
