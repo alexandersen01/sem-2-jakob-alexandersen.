@@ -57,10 +57,8 @@ public class GameBoard extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             Cell cell = (Cell) e.getSource();
-
             // repaint the cell
             cell.paint();
-
         }
     }
 

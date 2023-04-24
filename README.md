@@ -15,4 +15,4 @@ Jeg tok utgangspunkt i datasettet fra Gordon Royle, og brukte py-sydoku for å l
 Videre gjorde jeg disse løste brettene om til strings, og erstattet tilfeldige tall med '0'. Antall nuller baseres på vanskelighetsgraden.
 [Driverkoden til sudoku-generatoren finner du på min private github](https://github.com/alexandersen01/man-2).
 
-Til slutt så finnes det [En link her til den som måtte prøve seg👻](https://youtu.be/2LXjAXzpSxk)
+Hvis du ikke er kjent med sudoku så finnes det [en link her til den som måtte prøve seg👻](https://youtu.be/2LXjAXzpSxk)

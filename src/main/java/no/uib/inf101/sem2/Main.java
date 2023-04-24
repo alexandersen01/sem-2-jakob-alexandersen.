@@ -10,11 +10,12 @@ import javax.swing.JFrame;
 
 public class Main extends JFrame {
 
-  Ouch ouch = new Ouch();
-  Game game = new Game();
-  GameBoard board = new GameBoard();
-  JButton NGbutton = new JButton("Check solution");
-  Congratulations congrats = new Congratulations();
+  // initialize components
+  Ouch ouch = new Ouch(); // losing screen
+  Congratulations congrats = new Congratulations(); // winning screen
+  Game game = new Game(); // game
+  GameBoard board = new GameBoard(); // gameboard
+  JButton NGbutton = new JButton("Check solution"); // button for checking solution
 
   public Main() {
 
@@ -27,7 +28,7 @@ public class Main extends JFrame {
     NGbutton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        game.isSolved();
+        game.isSolved(); // check if game is solved
         if (game.isSolved()) {
           c.removeAll();
           c.add(congrats, BorderLayout.CENTER);

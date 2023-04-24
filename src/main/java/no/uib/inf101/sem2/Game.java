@@ -14,27 +14,6 @@ public class Game {
     public GameStatus state = GameStatus.ACTIVE;
     public static String solution = "";
 
-    // all the numbers in the game
-    // add solved boards to txt files
-    // enum field
-    // tallet, statusen til tallet, om tallet er gitt eller ikke
-    // når tegner, tegner bare en rute -> jpanel (bare tilgang til det tallet
-    // lager en klasse (sudokucell) field num, status
-    // soduku cellview som tegner den ene ruten
-    // den håndterer statusen til tallet
-
-    // FUNKSJONALITET
-    // ønsker en splash screen
-    // ønsker en GAMEOVER -> om du har tapt eller vunnet
-
-    // MODULARITET
-    // Innenfor minimum
-    // lage en ny klasse som representerer en celle og en som tegner en celle
-
-    // KODESTIL
-    // dokumentasjon og testing må skrives på alt som er public
-    // kjør format på alle filene
-
     int nums[][] = new int[GameBoard.GridSize][GameBoard.GridSize];
     boolean isGiven[][] = new boolean[GameBoard.GridSize][GameBoard.GridSize];
 
@@ -101,7 +80,7 @@ public class Game {
         if (GameBoard.box == null) {
             return false;
         }
-    
+
         String board = "";
         // get all the numbers on from gameboard.box
         for (int i = 0; i < GameBoard.GridSize; i++) {
@@ -113,7 +92,7 @@ public class Game {
                 board += GameBoard.box[i][j].getText();
             }
         }
-    
+
         // check if board is equal to solution
         if (board.equals(solution)) {
             state = GameStatus.WON;
@@ -123,6 +102,5 @@ public class Game {
             return false;
         }
     }
-    
 
 }

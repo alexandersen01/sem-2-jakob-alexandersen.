@@ -57,6 +57,12 @@ public class Cell extends JTextField {
         paint();
     }
 
+    /**
+     * Paints cells in the game board
+     * <p>
+     * The cells are painted in different colors depending on their status, and
+     * given cells are not editable
+     */
     public void paint() {
         switch (status) {
             case GIVEN:
@@ -72,15 +78,6 @@ public class Cell extends JTextField {
                 super.setText("");
                 super.setEditable(true);
                 break;
-
-            case WRONG_GUESS:
-                super.setBackground(WrongGuessColor);
-                break;
-
-            case CORRECT_GUESS:
-                super.setBackground(CorrectGuessColor);
-                break;
-
         }
 
         // paint lines in a 3x3 grid
