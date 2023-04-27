@@ -103,4 +103,14 @@ public class Game {
         }
     }
 
+    /**
+     * returns the value of a cell for testing purposes
+     * @param row
+     * @param col
+     * @return
+     */
+    public int getValue(int row, int col) {
+        return nums[row][col];
+    }
+
 }

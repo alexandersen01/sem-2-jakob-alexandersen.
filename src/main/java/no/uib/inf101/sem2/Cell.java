@@ -15,8 +15,6 @@ public class Cell extends JTextField {
 
     private Color BackgroundColor = Color.WHITE;
     private Color EmptyColor = Color.YELLOW;
-    private Color WrongGuessColor = Color.GRAY;
-    private Color CorrectGuessColor = Color.GREEN;
     private Color GivenColor = Color.BLACK;
     private Color ToGuessColor = Color.BLUE;
     private Font NUMBER_FONT = new Font("Avenir", Font.PLAIN, 40);
