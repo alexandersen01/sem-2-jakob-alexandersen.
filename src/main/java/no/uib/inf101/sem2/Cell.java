@@ -13,13 +13,13 @@ import javax.swing.JTextField;
 
 public class Cell extends JTextField {
 
-    public static Color BackgroundColor = Color.WHITE;
-    public static Color EmptyColor = Color.YELLOW;
-    public static Color WrongGuessColor = Color.GRAY;
-    public static Color CorrectGuessColor = Color.GREEN;
-    public static Color GivenColor = Color.BLACK;
-    public static Color ToGuessColor = Color.BLUE;
-    public static Font NUMBER_FONT = new Font("Avenir", Font.PLAIN, 40);
+    private Color BackgroundColor = Color.WHITE;
+    private Color EmptyColor = Color.YELLOW;
+    private Color WrongGuessColor = Color.GRAY;
+    private Color CorrectGuessColor = Color.GREEN;
+    private Color GivenColor = Color.BLACK;
+    private Color ToGuessColor = Color.BLUE;
+    private Font NUMBER_FONT = new Font("Avenir", Font.PLAIN, 40);
 
     // Row and column of the cell
     int row;
@@ -77,6 +77,26 @@ public class Cell extends JTextField {
                 super.setForeground(ToGuessColor);
                 super.setText("");
                 super.setEditable(true);
+
+                // Only allow numbers to be typed in the cell
+                super.addKeyListener(new java.awt.event.KeyAdapter() {
+                    public void keyTyped(java.awt.event.KeyEvent evt) {
+                        char c = evt.getKeyChar();
+                        if (!(Character.isDigit(c) || (c == java.awt.event.KeyEvent.VK_BACK_SPACE)
+                                || (c == java.awt.event.KeyEvent.VK_DELETE))) {
+                            evt.consume();
+                        }
+                    }
+                });
+
+                // only allow one digit in the cell
+                super.addKeyListener(new java.awt.event.KeyAdapter() {
+                    public void keyTyped(java.awt.event.KeyEvent evt) {
+                        if (getText().length() >= 1) {
+                            evt.consume();
+                        }
+                    }
+                });
                 break;
         }
 
