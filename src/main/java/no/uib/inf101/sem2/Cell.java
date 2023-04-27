@@ -54,6 +54,21 @@ public class Cell extends JTextField {
         }
         paint();
     }
+    
+    // New method to set the cell value based on the typed character
+    // for testing purposes
+    public void setValueFromChar(char c) {
+        if (Character.isDigit(c)) {
+            value = Character.getNumericValue(c);
+        } else {
+            value = 0;
+        }
+    }
+
+    // gets the value from the cell. testing purposes
+    public int getValue() {
+        return value;
+    }
 
     /**
      * Paints cells in the game board

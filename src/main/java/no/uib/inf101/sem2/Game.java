@@ -14,8 +14,8 @@ public class Game {
     public GameStatus state = GameStatus.ACTIVE;
     public static String solution = "";
 
-    int nums[][] = new int[GameBoard.GridSize][GameBoard.GridSize];
-    boolean isGiven[][] = new boolean[GameBoard.GridSize][GameBoard.GridSize];
+    int nums[][] = new int[GameModel.GridSize][GameModel.GridSize];
+    boolean isGiven[][] = new boolean[GameModel.GridSize][GameModel.GridSize];
 
     // constructor
     public Game() {
@@ -50,10 +50,10 @@ public class Game {
         }
 
         // get first 81 chars from line and add to nums[][]
-        for (int i = 0; i < GameBoard.GridSize; i++) {
-            for (int j = 0; j < GameBoard.GridSize; j++) {
+        for (int i = 0; i < GameModel.GridSize; i++) {
+            for (int j = 0; j < GameModel.GridSize; j++) {
                 nums[i][j] = Integer
-                        .parseInt(line.substring(i * GameBoard.GridSize + j, i * GameBoard.GridSize + j + 1));
+                        .parseInt(line.substring(i * GameModel.GridSize + j, i * GameModel.GridSize + j + 1));
             }
         }
 
@@ -61,8 +61,8 @@ public class Game {
         solution += line.substring(82);
 
         // set isGiven[][] to true for all nums[][] that are not 0
-        for (int i = 0; i < GameBoard.GridSize; i++) {
-            for (int j = 0; j < GameBoard.GridSize; j++) {
+        for (int i = 0; i < GameModel.GridSize; i++) {
+            for (int j = 0; j < GameModel.GridSize; j++) {
                 if (nums[i][j] != 0) {
                     isGiven[i][j] = true;
                 }
@@ -77,19 +77,19 @@ public class Game {
      */
     public boolean isSolved() {
         // Check that GameBoard.box is not null
-        if (GameBoard.box == null) {
+        if (GameView.box == null) {
             return false;
         }
 
         String board = "";
         // get all the numbers on from gameboard.box
-        for (int i = 0; i < GameBoard.GridSize; i++) {
-            for (int j = 0; j < GameBoard.GridSize; j++) {
-                // Check that GameBoard.box[i][j] is not null
-                if (GameBoard.box[i][j] == null) {
+        for (int i = 0; i < GameModel.GridSize; i++) {
+            for (int j = 0; j < GameModel.GridSize; j++) {
+                // Check that GameView.box[i][j] is not null
+                if (GameView.box[i][j] == null) {
                     return false;
                 }
-                board += GameBoard.box[i][j].getText();
+                board += GameView.box[i][j].getText();
             }
         }
 
@@ -105,6 +105,7 @@ public class Game {
 
     /**
      * returns the value of a cell for testing purposes
+     * 
      * @param row
      * @param col
      * @return

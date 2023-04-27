@@ -14,7 +14,8 @@ public class Main extends JFrame {
   Ouch ouch = new Ouch(); // losing screen
   Congratulations congrats = new Congratulations(); // winning screen
   Game game = new Game(); // game
-  GameBoard board = new GameBoard(); // gameboard
+  GameModel model = new GameModel(); // game model
+  GameView board = new GameView(model); // gameboard
   JButton NGbutton = new JButton("Check solution"); // button for checking solution
 
   public Main() {
@@ -40,7 +41,9 @@ public class Main extends JFrame {
         }
       }
     });
-    board.newGame();
+    model.newGame();
+    board.updateView();
+
     pack();
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
