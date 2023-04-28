@@ -10,6 +10,7 @@ public class enterNum {
 
         // Simulate typing '2' in the cell
         cell.setValueFromChar('2');
+        cell.setValueFromChar('2');
 
         // Assert that the value of the cell is 2
         assert cell.getValue() == 2;
